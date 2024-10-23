@@ -5,13 +5,12 @@ require_once '../functions/transaction_functions.php';
 
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /pos/index.php");
+    header("Location: /prespos/index.php");
     exit();
 }
 
 $db = getDB();
 
-$pageTitle = 'Pembayaran';
 include_once '../includes/header.php';
 
 $products = getAllProducts($db);
@@ -22,15 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $total_price = $_POST['total_price'];
     $payment_method = $_POST['payment_method'];
 
-    if (empty($items)) {
-        $message = '<div class="alert alert-danger">Keranjang belanja kosong.</div>';
-    } else {
+    if (!empty($items)) {
         $transaction_id = createTransaction($db, $items, $total_price, $payment_method);
-        if ($transaction_id) {
-            $message = '<div class="alert alert-success">Transaksi berhasil. ID Transaksi: ' . $transaction_id . '</div>';
-        } else {
-            $message = '<div class="alert alert-danger">Gagal melakukan transaksi. Silakan coba lagi.</div>';
-        }
+        $message = $transaction_id ? 
+            '<div class="alert alert-success">Transaksi berhasil. ID Transaksi: ' . $transaction_id . '</div>' :
+            '<div class="alert alert-danger">Gagal melakukan transaksi. Silakan coba lagi.</div>';
+    } else {
+        $message = '<div class="alert alert-danger">Keranjang belanja kosong.</div>';
     }
 }
 ?>
@@ -38,12 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">
-                Daftar Produk
-            </div>
+            <div class="card-header">Daftar Produk</div>
             <div class="card-body">
                 <input type="text" id="search-input" class="form-control mb-3" onkeyup="searchProducts()" placeholder="Cari produk...">
-                <table class="table table-striped">
+                <table class="table table-striped" id="product-table">
                     <thead>
                         <tr>
                             <th>Nama Produk</th>
@@ -55,15 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tbody>
                         <?php foreach ($products as $product): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($product['nama_produk']); ?></td>
-                            <td>Rp <?php echo number_format($product['harga_produk'], 0, ',', '.'); ?></td>
-                            <td><?php echo $product['stok_produk']; ?></td>
+                            <td><?= htmlspecialchars($product['nama_produk']) ?></td>
+                            <td>Rp <?= number_format($product['harga_produk'], 0, ',', '.') ?></td>
+                            <td><?= $product['stok_produk'] ?></td>
                             <td>
                                 <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-id="<?php echo $product['id_produk']; ?>"
-                                        data-name="<?php echo htmlspecialchars($product['nama_produk']); ?>"
-                                        data-price="<?php echo $product['harga_produk']; ?>"
-                                        data-stock="<?php echo $product['stok_produk']; ?>">
+                                        data-id="<?= $product['id_produk'] ?>"
+                                        data-name="<?= htmlspecialchars($product['nama_produk']) ?>"
+                                        data-price="<?= $product['harga_produk'] ?>"
+                                        data-stock="<?= $product['stok_produk'] ?>">
                                     Tambah
                                 </button>
                             </td>
@@ -76,19 +71,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">
-                Pembayaran
-            </div>
+            <div class="card-header">Pembayaran</div>
             <div class="card-body">
-                <?php echo $message; ?>
+                <?= $message ?>
                 <form id="payment-form" method="POST">
                     <div id="cart-items"></div>
                     <div class="mb-3">
-                        <label for="total_price" class="form-label">Total Harga</label>
+                        <label for="total_price" class="form-label"><font color="#122D4F">Total Harga</font></label>
                         <input type="text" class="form-control" id="total_price" name="total_price" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="payment_method" class="form-label">Metode Pembayaran</label>
+                        <label for="payment_method" class="form-label"><font color="#122D4F">Metode Pembayaran</font></label>
                         <select class="form-control" id="payment_method" name="payment_method" required>
                             <option value="Qris">Qris</option>
                             <option value="Cash">Cash</option>
@@ -127,35 +120,30 @@ function updateCart() {
 
 function addToCart(id, name, price, stock) {
     let existingItem = cart.find(item => item.id === id);
-    if (existingItem) {
-        if (existingItem.quantity < stock) {
-            existingItem.quantity++;
-        } else {
-            alert('Stok tidak mencukupi');
-            return;
-        }
+    if (existingItem && existingItem.quantity < stock) {
+        existingItem.quantity++;
+    } else if (!existingItem) {
+        cart.push({id, name, price, quantity: 1});
     } else {
-        cart.push({id: id, name: name, price: price, quantity: 1});
+        alert('Stok tidak mencukupi');
+        return;
     }
     updateCart();
 }
 
 function removeFromCart(index) {
-    if (cart[index].quantity > 1) {
-        cart[index].quantity--;
-    } else {
-        cart.splice(index, 1);
-    }
+    cart[index].quantity > 1 ? cart[index].quantity-- : cart.splice(index, 1);
     updateCart();
 }
 
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function() {
-        let id = this.getAttribute('data-id');
-        let name = this.getAttribute('data-name');
-        let price = parseFloat(this.getAttribute('data-price'));
-        let stock = parseInt(this.getAttribute('data-stock'));
-        addToCart(id, name, price, stock);
+        addToCart(
+            this.getAttribute('data-id'),
+            this.getAttribute('data-name'),
+            parseFloat(this.getAttribute('data-price')),
+            parseInt(this.getAttribute('data-stock'))
+        );
     });
 });
 
@@ -165,6 +153,25 @@ document.getElementById('payment-form').addEventListener('submit', function(e) {
         alert('Keranjang belanja kosong. Silakan tambahkan produk terlebih dahulu.');
     }
 });
+
+function searchProducts() {
+    let input = document.getElementById('search-input');
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById('product-table');
+    let tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = '';
+            } else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+}
 </script>
 
 <?php include '../includes/footer.php'; ?>

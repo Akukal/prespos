@@ -10,7 +10,6 @@ require_once '../functions/product_functions.php';
 
 $db = getDB();
 
-$pageTitle = 'Edit Produk';
 include '../includes/header.php';
 
 $id = $_GET['id'] ?? null;
@@ -61,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $product) {
                     <?php if ($product): ?>
                         <form method="POST" action="">
                             <div class="mb-3">
-                                <label for="nama_produk" class="form-label">Nama Produk</label>
-                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" value="<?php echo htmlspecialchars($product['nama_produk']); ?>" required>
+                                <label for="nama_produk" class="form-label" style="color: #122D4F;"><font color="#122D4F">Nama Produk</font></label>
+                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" style="color: #122D4F;" value="<?php echo htmlspecialchars($product['nama_produk']); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label for="harga_produk" class="form-label">Harga Produk</label>

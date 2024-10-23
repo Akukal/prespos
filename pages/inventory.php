@@ -76,7 +76,7 @@ if (isset($_SESSION['error_message'])) {
                     <td>Rp <?php echo number_format($product['harga_produk'], 0, ',', '.'); ?></td>
                     <td><?php echo $product['stok_produk']; ?></td>
                     <td>
-                        <a href="edit_product.php?id=<?php echo $product['id_produk']; ?>" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="edit_product.php?id=<?php echo $product['id_produk']; ?>" class="btn btn-sm btn-warning" style="background-color: #122D4F; border-color: #122D4F; color: white;">Edit</a>
                         <form method="POST" action="" style="display: inline;">
                             <input type="hidden" name="delete_product" value="<?php echo $product['id_produk']; ?>">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>

@@ -22,8 +22,8 @@ include_once '../includes/header.php';
 ?>
 
 <div class="row">
-    <div class="col-md-3 mb-4">
-        <div class="card bg-warning text-white .bg-orange">
+    <div class="col-md-2 mb-4">
+        <div class="card" style="background-color: #122D4F; color: white;">
             <div class="card-body">
                 <h5 class="card-title">Total Produk</h5>
                 <p class="card-text display-5"><?php echo $totalProducts; ?></p>
@@ -31,15 +31,15 @@ include_once '../includes/header.php';
         </div>
     </div>
     <div class="col-md-3 mb-4">
-        <div class="card bg-warning text-white">
+        <div class="card" style="background-color: #122D4F; color: white;">
             <div class="card-body">
-                <h5 class="card-title">Produk Stok Rendah</h5>
+                <h5 class="card-title">Stok Rendah</h5>
                 <p class="card-text display-5"><?php echo count($lowStockProducts); ?></p>
             </div>
         </div>
     </div>
-    <div class="col-md-3 mb-4">
-        <div class="card bg-warning text-white">
+    <div class="col-md-4 mb-4">
+        <div class="card" style="background-color: #122D4F; color: white;">
             <div class="card-body">
                 <h5 class="card-title">Pemasukan Hari Ini</h5>
                 <p class="card-text display-5">Rp <?php echo number_format($dailyIncome, 0, ',', '.'); ?></p>
@@ -47,7 +47,7 @@ include_once '../includes/header.php';
         </div>
     </div>
     <div class="col-md-3 mb-4">
-        <div class="card bg-warning text-white">
+        <div class="card" style="background-color: #122D4F; color: white;">
             <div class="card-body">
                 <h5 class="card-title">Transaksi Hari Ini</h5>
                 <p class="card-text display-5"><?php echo $dailyTransactions; ?></p>

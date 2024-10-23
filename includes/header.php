@@ -17,7 +17,7 @@ function isActive($page) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle . ' - POS System' : 'POS System'; ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/pos/css/style.css">
+    <link rel="stylesheet" href="/prespos/css/style.css">
     <?php if (isset($extraStyles)): ?>
         <?php foreach ($extraStyles as $style): ?>
             <link rel="stylesheet" href="<?php echo $style; ?>">
@@ -28,7 +28,7 @@ function isActive($page) {
     <header class="main-header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="/pos/index.php">POS System</a>
+                <a class="navbar-brand" href="/prespos/index.php">POS System</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,16 +36,16 @@ function isActive($page) {
                     <ul class="navbar-nav me-auto">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo isActive('dashboard.php'); ?>" href="/pos/pages/dashboard.php">Dashboard</a>
+                                <a class="nav-link <?php echo isActive('dashboard.php'); ?>" href="/prespos/pages/dashboard.php">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo isActive('inventory.php'); ?>" href="/pos/pages/inventory.php">Inventory</a>
+                                <a class="nav-link <?php echo isActive('inventory.php'); ?>" href="/prespos/pages/inventory.php">Inventory</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo isActive('add_item.php'); ?>" href="/pos/pages/add_item.php">Add Item</a>
+                                <a class="nav-link <?php echo isActive('add_item.php'); ?>" href="/prespos/pages/add_item.php">Add Item</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo isActive('payment.php'); ?>" href="/pos/pages/payment.php">Payment</a>
+                                <a class="nav-link <?php echo isActive('payment.php'); ?>" href="/prespos/pages/payment.php">Payment</a>
                             </li>
                         <?php endif; ?>
                     </ul>
