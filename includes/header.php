@@ -55,11 +55,11 @@ function isActive($page) {
                                 <span class="nav-link">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/pos/logout.php">Logout</a>
+                                <a class="nav-link" href="/prespos/logout.php">Logout</a>
                             </li>
                         <?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/pos/index.php">Login</a>
+                                <a class="nav-link" href="/prespos/index.php">Login</a>
                             </li>
                         <?php endif; ?>
                     </ul>
