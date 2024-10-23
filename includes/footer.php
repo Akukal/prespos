@@ -8,7 +8,6 @@
                 <ul>
                     <li><a href="/pos/about.php">About</a></li>
                     <li><a href="/pos/contact.php">Contact</a></li>
-                    <li><a href="/pos/privacy.php">Privacy Policy</a></li>
                 </ul>
             </nav>
         </div>
