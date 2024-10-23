@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="card-body">
                 <input type="text" id="search-input" class="form-control mb-3" onkeyup="searchProducts()" placeholder="Cari produk...">
-                <table class="table table-striped" id="product-table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nama Produk</th>
@@ -163,35 +163,6 @@ document.getElementById('payment-form').addEventListener('submit', function(e) {
     if (cart.length === 0) {
         e.preventDefault();
         alert('Keranjang belanja kosong. Silakan tambahkan produk terlebih dahulu.');
-    }
-});
-
-function searchProducts() {
-    let input = document.getElementById('search-input');
-    let filter = input.value.toUpperCase();
-    let table = document.getElementById('product-table');
-    let tr = table.getElementsByTagName('tr');
-
-    for (let i = 1; i < tr.length; i++) {
-        let td = tr[i].getElementsByTagName('td')[0];
-        if (td) {
-            let txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().includes(filter)) {
-                tr[i].style.display = '';
-            } else {
-                tr[i].style.display = 'none';
-            }
-        }
-    }
-}
-
-// Make sure the DOM is fully loaded before attaching event listeners
-document.addEventListener('DOMContentLoaded', function() {
-    let searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', searchProducts);
-    } else {
-        console.error('Search input element not found');
     }
 });
 </script>

@@ -6,8 +6,9 @@
             <p>&copy; <?php echo date("Y"); ?> Prime POS System. All rights reserved.</p>
             <nav class="footer-nav">
                 <ul>
-                    <li><a href="/pos/pages/about.php">About</a></li>
-                    <li><a href="/pos/pages/contact.php">Contact</a></li>
+                    <li><a href="/pos/about.php">About</a></li>
+                    <li><a href="/pos/contact.php">Contact</a></li>
+                    <li><a href="/pos/privacy.php">Privacy Policy</a></li>
                 </ul>
             </nav>
         </div>
