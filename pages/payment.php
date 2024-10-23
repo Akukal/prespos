@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="card-body">
                 <input type="text" id="search-input" class="form-control mb-3" onkeyup="searchProducts()" placeholder="Cari produk...">
-                <table class="table table-striped">
+                <table class="table table-striped" id="product-table">
                     <thead>
                         <tr>
                             <th>Nama Produk</th>
@@ -165,6 +165,25 @@ document.getElementById('payment-form').addEventListener('submit', function(e) {
         alert('Keranjang belanja kosong. Silakan tambahkan produk terlebih dahulu.');
     }
 });
+
+function searchProducts() {
+    let input = document.getElementById('search-input');
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById('product-table');
+    let tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName('td')[0]; // Index 0 for the product name column
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = '';
+            } else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+}
 </script>
 
 <?php include '../includes/footer.php'; ?>

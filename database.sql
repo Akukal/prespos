@@ -1,17 +1,17 @@
--- Create the database
+-- Membuat database
 CREATE DATABASE IF NOT EXISTS db_pos;
 
--- Use the database
+-- Menggunakan database
 USE db_pos;
 
--- Create users table
+-- Membuat tabel users
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
 
--- Create tb_produk table
+-- Membuat tabel tb_produk
 CREATE TABLE IF NOT EXISTS tb_produk (
     id_produk INT AUTO_INCREMENT PRIMARY KEY,
     nama_produk VARCHAR(100) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS tb_produk (
     stok_produk INT NOT NULL
 );
 
--- Create tb_history table
+-- Membuat tabel tb_history
 CREATE TABLE IF NOT EXISTS tb_history (
     id_transaction INT AUTO_INCREMENT PRIMARY KEY,
     total_price DECIMAL(10, 2) NOT NULL,
