@@ -61,15 +61,15 @@ include __DIR__ . '/includes/header.php';
                     <?php endif; ?>
                     <form method="POST" action="">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="username" class="form-label" style="color: #122D4F;"><font color="#122D4F">Username</font></label>
+                            <input type="text" class="form-control" id="username" name="username" style="color: #122D4F;" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <label for="password" class="form-label" style="color: #122D4F;"><font color="#122D4F">Password</font></label>
+                            <input type="password" class="form-control" id="password" name="password" style="color: #122D4F;" srequired>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #122D4F; border-color: #122D4F; color: white;">Login</button>
                         </div>
                     </form>
                 </div>
