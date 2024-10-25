@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Cek apakah user sudah login
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /pos/index.php");
+    header("Location: /prespos/index.php");
     exit();
 }
 
