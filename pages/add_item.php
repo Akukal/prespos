@@ -48,15 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php echo $message; ?>
                 <form method="POST" action="">
                     <div class="mb-3">
-                        <label for="nama_produk" class="form-label">Nama Produk</label>
+                        <label for="nama_produk" class="form-label" style="color: black;"><font color="#122D4F">Nama Produk</font></label>
                         <input type="text" class="form-control" id="nama_produk" name="nama_produk" value="<?php echo htmlspecialchars($nama_produk ?? ''); ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="harga_produk" class="form-label">Harga Produk</label>
+                        <label for="harga_produk" class="form-label" style="color: black;"><font color="#122D4F">Harga Produk</font></label>
                         <input type="number" class="form-control" id="harga_produk" name="harga_produk" value="<?php echo htmlspecialchars($harga_produk ?? ''); ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="stok_produk" class="form-label">Stok Produk</label>
+                        <label for="stok_produk" class="form-label" style="color: black;"><font color="#122D4F">Stok Produk</font></label>
                         <input type="number" class="form-control" id="stok_produk" name="stok_produk" value="<?php echo htmlspecialchars($stok_produk ?? ''); ?>" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Produk</button>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /pos/index.php");
+    header("Location: /prespos/index.php");
     exit();
 }
 
@@ -60,15 +60,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $product) {
                     <?php if ($product): ?>
                         <form method="POST" action="">
                             <div class="mb-3">
-                                <label for="nama_produk" class="form-label" style="color: #122D4F;"><font color="#122D4F">Nama Produk</font></label>
-                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" style="color: #122D4F;" value="<?php echo htmlspecialchars($product['nama_produk']); ?>" required>
+                                <label for="nama_produk" class="form-label" style="color: black;"><font color="black">Nama Produk</font></label>
+                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" style="color: black;" value="<?php echo htmlspecialchars($product['nama_produk']); ?>" required>
                             </div>
                             <div class="mb-3">
-                                <label for="harga_produk" class="form-label">Harga Produk</label>
+                                <label for="harga_produk" class="form-label" style="color: black;"><font color="black">Harga Produk</font></label>
                                 <input type="number" class="form-control" id="harga_produk" name="harga_produk" value="<?php echo $product['harga_produk']; ?>" required>
                             </div>
                             <div class="mb-3">
-                                <label for="stok_produk" class="form-label">Stok Produk</label>
+                                <label for="stok_produk" class="form-label" style="color: black;"><font color="black">Stok Produk</font></label>
                                 <input type="number" class="form-control" id="stok_produk" name="stok_produk" value="<?php echo $product['stok_produk']; ?>" required>
                             </div>
                             <div class="d-grid gap-2">

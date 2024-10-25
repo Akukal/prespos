@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="card">
             <div class="card-header">Daftar Produk</div>
             <div class="card-body">
-                <input type="text" id="search-input" class="form-control mb-3" onkeyup="searchProducts()" placeholder="Cari produk...">
+                <input type="text" id="search-input" class="form-control mb-3" onkeyup="searchProducts()" placeholder="Cari produk..." style="color: black;">
                 <table class="table table-striped" id="product-table">
                     <thead>
                         <tr>
