@@ -20,62 +20,49 @@ $recentTransactions = getAllTransactions($db); // Kita akan membatasi jumlah yan
 
 include_once '../includes/header.php';
 ?>
-
-<div class="row">
-    <div class="col-md-2 mb-4">
-        <div class="card" style="background-color: #122D4F; color: white;">
-            <div class="card-body">
-                <h5 class="card-title">Total Produk</h5>
-                <p class="card-text display-5"><?php echo $totalProducts; ?></p>
-            </div>
-        </div>
+<div class="mx-4 sm:mx-10 px-4 sm:px-6 lg:px-8 mb-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="bg-indigo-900 text-white rounded-lg shadow-lg p-6">
+        <h5 class="text-lg font-semibold mb-2">Total Produk</h5>
+        <p class="text-3xl font-bold"><?php echo $totalProducts; ?></p>
     </div>
-    <div class="col-md-3 mb-4">
-        <div class="card" style="background-color: #122D4F; color: white;">
-            <div class="card-body">
-                <h5 class="card-title">Stok Rendah</h5>
-                <p class="card-text display-5"><?php echo count($lowStockProducts); ?></p>
-            </div>
-        </div>
+    
+    <div class="bg-indigo-900 text-white rounded-lg shadow-lg p-6">
+        <h5 class="text-lg font-semibold mb-2">Stok Rendah</h5>
+        <p class="text-3xl font-bold"><?php echo count($lowStockProducts); ?></p>
     </div>
-    <div class="col-md-4 mb-4">
-        <div class="card" style="background-color: #122D4F; color: white;">
-            <div class="card-body">
-                <h5 class="card-title">Pemasukan Hari Ini</h5>
-                <p class="card-text display-5">Rp <?php echo number_format($dailyIncome, 0, ',', '.'); ?></p>
-            </div>
-        </div>
+    
+    <div class="bg-indigo-900 text-white rounded-lg shadow-lg p-6 md:col-span-1">
+        <h5 class="text-lg font-semibold mb-2">Pemasukan Hari Ini</h5>
+        <p class="text-3xl font-bold">Rp <?php echo number_format($dailyIncome, 0, ',', '.'); ?></p>
     </div>
-    <div class="col-md-3 mb-4">
-        <div class="card" style="background-color: #122D4F; color: white;">
-            <div class="card-body">
-                <h5 class="card-title">Transaksi Hari Ini</h5>
-                <p class="card-text display-5"><?php echo $dailyTransactions; ?></p>
-            </div>
-        </div>
+    
+    <div class="bg-indigo-900 text-white rounded-lg shadow-lg p-6">
+        <h5 class="text-lg font-semibold mb-2">Transaksi Hari Ini</h5>
+        <p class="text-3xl font-bold"><?php echo $dailyTransactions; ?></p>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <div class="card-header">
-                Produk dengan Stok Rendah
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="md:col-span-1">
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="bg-white px-6 py-4 rounded-t-lg border-b">
+                <h3 class="text-lg font-semibold">Produk dengan Stok Rendah</h3>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped rounded overflow-hidden">
-                        <thead class="bg-warning text-white">
+            <div class="p-6">
+                <div class="overflow-x-auto max-h-[250px] overflow-y-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-yellow-500 text-white sticky top-0">
                             <tr>
-                                <th class="rounded-top-left-4">Nama Produk</th>
-                                <th class="rounded-top-right-4">Stok</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Nama Produk</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Stok</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="bg-white divide-y divide-gray-200">
                             <?php foreach ($lowStockProducts as $product): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($product['nama_produk']); ?></td>
-                                <td><?php echo $product['stok_produk']; ?></td>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($product['nama_produk']); ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?php echo $product['stok_produk']; ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -84,35 +71,40 @@ include_once '../includes/header.php';
             </div>
         </div>
     </div>
-    <div class="col-md-8 mb-4">
-        <div class="card">
-            <div class="card-header">
-                Riwayat Transaksi
+    
+    <div class="md:col-span-2">
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="bg-white px-6 py-4 rounded-t-lg border-b">
+                <h3 class="text-lg font-semibold">Riwayat Transaksi</h3>
             </div>
-            <div class="card-body">
-                <table class="table table-striped rounded overflow-hidden">
-                    <thead class="bg-warning text-white">
-                        <tr>
-                            <th>ID Transaksi</th>
-                            <th>Total Harga</th>
-                            <th>Metode Pembayaran</th>
-                            <th>Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach (array_slice($recentTransactions, 0, 5) as $transaction): ?>
-                        <tr>
-                            <td><?php echo $transaction['id_transaction']; ?></td>
-                            <td>Rp <?php echo number_format($transaction['total_price'], 0, ',', '.'); ?></td>
-                            <td><?php echo $transaction['payment_method']; ?></td>
-                            <td><?php echo date('d/m/Y H:i', strtotime($transaction['date'])); ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="p-6">
+                <div class="overflow-x-auto max-h-[250px] overflow-y-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-yellow-500 text-white sticky top-0">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">ID Transaksi</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Total Harga</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Metode Pembayaran</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <?php foreach ($recentTransactions as $transaction): ?>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap"><?php echo $transaction['id_transaction']; ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap">Rp <?php echo number_format($transaction['total_price'], 0, ',', '.'); ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?php echo $transaction['payment_method']; ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?php echo date('d/m/Y H:i', strtotime($transaction['date'])); ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    </div>
+</div>
 </div>
 
 <?php include '../includes/footer.php'; ?>

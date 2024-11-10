@@ -1,16 +1,14 @@
-</div> <!-- Penutup untuk div.content -->
+<?php
+// footer.php
 
-<footer class="main-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p>&copy; <?php echo date("Y"); ?> Prime POS System. All rights reserved.</p>
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="/prespos/about.php">About</a></li>
-                    <li><a href="/prespos/contact.php">Contact</a></li>
-                    <li><a href="/prespos/privacy.php">Privacy Policy</a></li>
-                </ul>
-            </nav>
+// Mendapatkan tahun saat ini
+$currentYear = date("Y");
+?>
+
+<footer class="bg-indigo-600 shadow-lg fixed bottom-0 w-full">
+    <div class="mx-10 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center justify-center py-4">
+            <p class="text-white">&copy; <?php echo $currentYear; ?> RPL Prestasi Prima. Semua hak dilindungi.</p>
         </div>
     </div>
 </footer>
