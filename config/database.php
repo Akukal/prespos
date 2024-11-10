@@ -1,10 +1,10 @@
 <?php
 function getDB() {
     $config = [
-        'host' => 'sql100.infinityfree.com',
-        'dbname' => 'if0_37685285_db_pos',
-        'username' => 'if0_37685285',
-        'password' => 'ttgJN61cIV'
+        'host' => 'localhost',
+        'dbname' => 'db_pos',
+        'username' => 'root',
+        'password' => ''
     ];
 
     try {

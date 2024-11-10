@@ -3,20 +3,6 @@ session_start();
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/functions/user_functions.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// Cek apakah file ada
-if (!file_exists(__DIR__ . '/functions/user_functions.php')) {
-    die('File user_functions.php tidak ditemukan');
-}
-
-// Cek isi file
-$content = file_get_contents(__DIR__ . '/functions/user_functions.php');
-if (strpos($content, 'function loginUser') === false) {
-    die('Fungsi loginUser tidak ditemukan di user_functions.php');
-}
-
 // Jika pengguna sudah login, redirect ke dashboard
 if (isset($_SESSION['user_id'])) {
     header("Location: pages/dashboard.php");
@@ -49,12 +35,12 @@ include __DIR__ . '/includes/header.php';
 ?>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center">
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+    <div class="bg-white px-8 rounded-xl shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
         
         <?php if ($error): ?>
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                <?php echo $error; ?>
+                <?php echo htmlspecialchars($error); ?>
             </div>
         <?php endif; ?>
 
