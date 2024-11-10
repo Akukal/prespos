@@ -32,73 +32,45 @@ function isActive($page) {
         <?php endforeach; ?>
     <?php endif; ?>
 </head>
-<body class="bg-gray-100">
-    <header class="bg-indigo-600 shadow-lg">
-        <nav class="mx-4 sm:mx-10 px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="/prespos/index.php" class="flex-shrink-0 flex items-center text-white font-bold text-xl">
-                        POS
-                    </a>
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <div class="hidden md:ml-6 md:flex md:space-x-1 items-center whitespace-nowrap">
-                            <a href="/prespos/pages/dashboard.php" 
-                               class="<?php echo isActive('dashboard.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                                Dashboard
-                            </a>
-                            <a href="/prespos/pages/inventory.php"
-                               class="<?php echo isActive('inventory.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                                Inventory
-                            </a>
-                            <a href="/prespos/pages/add_item.php"
-                               class="<?php echo isActive('add_item.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                                Add Item
-                            </a>
-                            <a href="/prespos/pages/payment.php"
-                               class="<?php echo isActive('payment.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                                Payment
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                <div class="flex items-center">
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <span class="text-white mr-4 whitespace-nowrap">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                        <a href="/prespos/logout.php" 
-                           class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                            Logout
-                        </a>
-                    <?php else: ?>
-                        <a href="/prespos/index.php"
-                           class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                            Login
-                        </a>
-                    <?php endif; ?>
-                </div>
-                <div class="flex md:hidden">
-                    <button id="menu-button" class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="mobile-menu" class="md:hidden hidden">
-                <div class="flex flex-col space-y-1 mt-2">
-                    <a href="/prespos/pages/dashboard.php" 
-                       class="<?php echo isActive('dashboard.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                        Dashboard
-                    </a>
-                    <a href="/prespos/pages/inventory.php"
-                       class="<?php echo isActive('inventory.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                        Inventory
-                    </a>
-                    <a href="/prespos/pages/add_item.php"
-                       class="<?php echo isActive('add_item.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                        Add Item
-                    </a>
-                    <a href="/prespos/pages/payment.php"
-                       class="<?php echo isActive('payment.php'); ?> text-white flex items-center hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                        Payment
-                    </a>
+<body>
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/prespos/index.php">PP POS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo isActive('dashboard.php'); ?>" href="/prespos/pages/dashboard.php">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo isActive('inventory.php'); ?>" href="/prespos/pages/inventory.php">Inventory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo isActive('add_item.php'); ?>" href="/prespos/pages/add_item.php">Add Item</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo isActive('payment.php'); ?>" href="/prespos/pages/payment.php">Payment</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li class="nav-item">
+                                <span class="nav-link">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/prespos/logout.php">Logout</a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/prespos/index.php">Login</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
                 </div>
             </div>
         </nav>
